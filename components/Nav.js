@@ -18,7 +18,7 @@ const Nav =() => (
                     <Link href="/tracks?page=1">
                         <a className="nav-link pl-0">Tracks</a>
                     </Link>
-                    <Link href="/contact-us">
+                    <Link href="/contact_us">
                         <a className="nav-link pl-0">Contact Us</a>
                     </Link>
                 </li>

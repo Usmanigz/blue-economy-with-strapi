@@ -8,6 +8,8 @@ function Index({ data, page, count}) {
 
     const router = useRouter();
 
+    const lastPage = Math.ceil(count/limit)
+
     return (
         <Layout>
             
@@ -24,20 +26,10 @@ function Index({ data, page, count}) {
 
                             <div class="slide-content row text-center">
                                 <div class="col-12 mx-auto inner">
-
-                                    {/* Content */}
-                                    <nav data-aos="zoom-out-up" data-aos-delay="800" aria-label="breadcrumb">
-                                        <ol class="breadcrumb">
-                                            <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Blog</li>
-                                        </ol>
-                                    </nav>
-
                                     <h1 class="mb-0 title effect-static-text">Tracks</h1>
                                 </div>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>   
@@ -64,9 +56,10 @@ function Index({ data, page, count}) {
                     <div class="col-12">
                         <nav>
                             <ul class="pagination justify-content-center">
+
                                 <li class="page-item">
                                     <button onClick={() => router.push(`/tracks/?page=${page - 1}`)} disabled={page <= 1} className="page-link">
-                                        <i class="icon-arrow-left"></i>
+                                        <i className="icon-arrow-left"></i>
                                     </button>
                                 </li>
 
@@ -77,9 +70,15 @@ function Index({ data, page, count}) {
 
                                 <li class="page-item">
                                     <button onClick={() => router.push(`/tracks/?page=${page + 1}`)} disabled={count <= (page*limit)  } className="page-link">
-                                        <i class="icon-arrow-right"></i>
+                                        <i className="icon-arrow-right"></i>
                                     </button>
                                 </li>
+
+                                {/* <li class="page-item">
+                                    <button onClick={() => router.push(`/tracks/?page=${lastPage}`)} disabled={page == lastPage} className="page-link">
+                                        Last Page{lastPage}
+                                    </button>
+                                </li> */}
                             </ul>
                         </nav>
                     </div>
@@ -94,7 +93,8 @@ function Index({ data, page, count}) {
 /* Getting Data from Server */
 export async function getServerSideProps({ query: {page=1 } }) {
 
-    var start = (page-1)*limit
+    var start = +page === 1 ? 0 : (+page - 1 ) * limit
+    // var start = (page-1)*limit
 
     const res = await fetch(`https://demo-blueeconomy.herokuapp.com/tracks?_start=${start}&_limit=${limit}`)
     const data = await res.json()
