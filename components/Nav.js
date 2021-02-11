@@ -1,19 +1,29 @@
 import Link from 'next/link'
 
 const Nav =() => (
-    <nav>
-        <Link href="/">
-            <a >Home</a>
-        </Link>
-        <Link href="/about">
-            <a >About</a>
-        </Link>
-        <Link href="/faq">
-            <a >FAQs</a>
-        </Link>
-        <Link href="/tracks">
-            <a >Tracks</a>
-        </Link>
+    // <nav className="navbar navbar-expand top">
+    <nav className="navbar navbar-expand navbar-fixed sub visible navbar-sticky">
+        <div className="container header">
+            <ul className="navbar-nav">
+               <li className="nav-item">
+                    <Link href="/">
+                        <a className="nav-link pl-0">Home</a>
+                    </Link>
+                    <Link href="/about">
+                        <a className="nav-link pl-0">About</a>
+                    </Link>
+                    <Link href="/faqs">
+                        <a className="nav-link pl-0">FAQs</a>
+                    </Link>
+                    <Link href="/tracks?page=1">
+                        <a className="nav-link pl-0">Tracks</a>
+                    </Link>
+                    <Link href="/contact-us">
+                        <a className="nav-link pl-0">Contact Us</a>
+                    </Link>
+                </li>
+            </ul>
+        </div>
     </nav>
 );
 
