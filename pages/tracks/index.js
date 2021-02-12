@@ -14,19 +14,19 @@ function Index({ data, page, count}) {
         <Layout>
             
             {/* Hero */}
-            <section id="slider" class="hero p-0 odd featured">
-                <div class="swiper-container no-slider animation slider-h-50 slider-h-auto">
-                    <div class="swiper-wrapper">
+            <section id="slider" className="hero p-0 odd featured">
+                <div className="swiper-container no-slider animation slider-h-50 slider-h-auto">
+                    <div className="swiper-wrapper">
 
                         {/* Item */}
-                        <div class="swiper-slide slide-center">
+                        <div className="swiper-slide slide-center">
 
                             {/* Media */}
-                            <img src="assets/images/bg-wide.jpg" alt="Full Image" class="full-image" data-mask="80" />
+                            <img src="assets/images/bg-wide.jpg" alt="Full Image" className="full-image" data-mask="80" />
 
-                            <div class="slide-content row text-center">
-                                <div class="col-12 mx-auto inner">
-                                    <h1 class="mb-0 title effect-static-text">Tracks</h1>
+                            <div className="slide-content row text-center">
+                                <div className="col-12 mx-auto inner">
+                                    <h1 className="mb-0 title effect-static-text">Tracks</h1>
                                 </div>
                             </div>
                         </div>
@@ -52,29 +52,29 @@ function Index({ data, page, count}) {
                 </div>
 
                 {/* Pagination */}
-                <div class="row">
-                    <div class="col-12">
+                <div className="row">
+                    <div className="col-12">
                         <nav>
-                            <ul class="pagination justify-content-center">
+                            <ul className="pagination justify-content-center">
 
-                                <li class="page-item">
+                                <li className="page-item">
                                     <button onClick={() => router.push(`/tracks/?page=${page - 1}`)} disabled={page <= 1} className="page-link">
                                         <i className="icon-arrow-left"></i>
                                     </button>
                                 </li>
 
-                                <li class="page-item active">
+                                <li className="page-item active">
                                     <button className="page-link">{page}</button>
                                     
                                 </li>
 
-                                <li class="page-item">
+                                <li className="page-item">
                                     <button onClick={() => router.push(`/tracks/?page=${page + 1}`)} disabled={count <= (page*limit)  } className="page-link">
                                         <i className="icon-arrow-right"></i>
                                     </button>
                                 </li>
 
-                                {/* <li class="page-item">
+                                {/* <li className="page-item">
                                     <button onClick={() => router.push(`/tracks/?page=${lastPage}`)} disabled={page == lastPage} className="page-link">
                                         Last Page{lastPage}
                                     </button>

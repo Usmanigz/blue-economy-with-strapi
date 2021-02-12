@@ -3,8 +3,6 @@ import Link from 'next/link'
 import Nav from './Nav'
 import Footer from './Footer'
 
-
-
 const name = 'M Usman'
 export const siteTitle = 'Demo BlueEconomy'
 
@@ -18,9 +16,9 @@ export default function Layout({ children }) {
         <link rel="icon" href="/favicon.ico" />
 
         {/* <meta charset="utf-8" /> */}
-        <meta http-equiv="x-ua-compatible" content="ie=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1"></meta>
-        <meta name="author" content="Codings" />
+        {/* <meta http-equiv="x-ua-compatible" content="ie=edge" /> */}
+        {/* <meta name="viewport" content="width=device-width, initial-scale=1"></meta> */}
+        {/* <meta name="author" content="Codings" /> */}
 
         {/* Favicons */}
         <link rel="shortcut icon" href="/assets/images/favicon.ico" />
