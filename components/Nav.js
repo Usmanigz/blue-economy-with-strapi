@@ -19,7 +19,7 @@ const Nav =() => (
                         <a className="nav-link pl-0">Tracks</a>
                     </Link>
                     <Link href="/contact_us">
-                        <a className="nav-link pl-0">Contact Us</a>
+                        <a className="btn primary-button">Contact Us</a>
                     </Link>
                 </li>
             </ul>

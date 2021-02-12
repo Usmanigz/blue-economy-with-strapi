@@ -17,7 +17,7 @@ function Track({data}) {
                         <div className="swiper-slide slide-center">
 
                             {/* Media */}
-                            <img src="assets/images/bg-wide.jpg" alt="Full Image" className="full-image" data-mask="80" />
+                            <img src="/assets/images/bg-wide.jpg" alt="Full Image" className="full-image" data-mask="80" />
 
                             <div className="slide-content row text-center">
                                 <div className="col-12 mx-auto inner">

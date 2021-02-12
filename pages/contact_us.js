@@ -28,7 +28,7 @@ function ContactUs() {
         const result = await res.json()
 
         if(result.id !== null){
-            setErrorMessage('The form have been submit successfully')
+            setErrorMessage('Your request have been recieved, Our representative will contact you soon.')
             event.target.name.value = ""
             event.target.email.value = ""
             event.target.phone.value = ""

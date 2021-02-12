@@ -1,7 +1,6 @@
 import Layout from "../components/layout";
 
 function FAQs({ data }) {
-    // console.log(data)
     return (
         <Layout>
 
@@ -14,7 +13,7 @@ function FAQs({ data }) {
                         <div className="swiper-slide slide-center">
 
                             {/* Media */}
-                            <img src="assets/images/bg-wide.jpg" alt="Full Image" className="full-image" data-mask="80" />
+                            <img src="/assets/images/bg-wide.jpg" alt="Full Image" className="full-image" data-mask="80" />
 
                             <div className="slide-content row text-center">
                                 <div className="col-12 mx-auto inner">
@@ -26,7 +25,8 @@ function FAQs({ data }) {
                 </div>
             </section>
 
-            <div className="container header">
+            <section id="faq">
+                <div className="container header">
                 {data.map((faq, i) =>(
                     <div key={i}>
                         <h3>{faq.title}</h3>
@@ -36,6 +36,10 @@ function FAQs({ data }) {
                 ))}
 
             </div>
+
+            </section>
+
+            
         </Layout>
     )
 }
