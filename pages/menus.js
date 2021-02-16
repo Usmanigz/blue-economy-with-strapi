@@ -15,10 +15,10 @@ function Menus({ data }) {
                                 { 
                                 menu[0] != "" ? <div ><h4>{menu[0]}</h4></div> :
                                 <div className="row">
-                                    <div className="col-md-8">
+                                    <div className="col-md-10">
                                         <h6>{menu[1]}</h6>
                                     </div>
-                                    <div className="col-md-4" style={{marginTop: '1.5rem'}}>{menu[3]}</div>
+                                    <div className="col-md-2" style={{marginTop: '1.5rem'}}>{menu[3]}</div>
                                     <div className="col-md-12"><p >{menu[2]}</p></div>
                                     
                                     
