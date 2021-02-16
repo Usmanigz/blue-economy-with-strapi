@@ -3,9 +3,6 @@ import { useRouter } from 'next/router';
 
 function Track({data}) {
 
-    // const router = useRouter();
-    // const id = router.query.id
-
     return (
         <Layout>
             {/* Hero */}

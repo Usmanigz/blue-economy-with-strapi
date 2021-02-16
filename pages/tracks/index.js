@@ -1,6 +1,7 @@
 import Layout from "../../components/layout";
 import Link from 'next/link'
 import { useRouter } from 'next/router';
+import {useState } from 'react'
 
 const limit = 3
 
@@ -9,6 +10,24 @@ function Index({ data, page, count}) {
     const router = useRouter();
 
     const lastPage = Math.ceil(count/limit)
+
+    const[search, setSearch] = useState('')
+
+    const updateSearch = e => {
+        setSearch(e.target.value);
+        getRecipes(search)
+    }
+
+    const getRecipes = async (search) => {
+
+        const response = await fetch(
+          `https://demo-blueeconomy.herokuapp.com/tracks?_where[title_contains]=${search}`
+        );
+        const data = await response.json();
+        console.log(data)
+        // setRecipes(data.);
+        // console.log(data.hits);
+    }
 
     return (
         <Layout>
@@ -36,6 +55,18 @@ function Index({ data, page, count}) {
 
             <section id="blog">
                 <div className="container header">
+                    <form>
+                        <div className="row form-group-margin">
+                            <div className="col-12 col-md-6 m-0 p-2 input-group">
+                                <input type="text" name="title" className="form-control field-name" placeholder="Search for title" onChange={updateSearch} />
+                            </div>
+
+                            {/* <div className="col-12 input-group m-0 p-2">
+                                <button type="submit" className="btn primary-button"> SEND</button>
+                            </div> */}
+                        </div>
+                    </form>
+
                     <div className="row items">
                         {data.map((tracks, i) =>(
                             <div className="col-12 col-md-6 col-lg-4 item" key={i}>
@@ -43,7 +74,7 @@ function Index({ data, page, count}) {
                                     <img src={tracks.image[0].url} style={{height: '250px'}}/>
                                     <h4>{tracks.title}</h4>
                                     <p>{tracks.description.substring(0, 90) + "..."}</p>
-                                    <Link href={`tracks/${tracks.id}`}>
+                                    <Link href={`/tracks/${tracks.id}`}>
                                         <a className="btn outline-button">Read More</a>
                                     </Link>
                                     { }
@@ -96,6 +127,7 @@ function Index({ data, page, count}) {
 
 /* Getting Data from Server */
 export async function getServerSideProps({ query: {page=1 } }) {
+
 
     var start = +page === 1 ? 0 : (+page - 1 ) * limit
     // var start = (page-1)*limit
