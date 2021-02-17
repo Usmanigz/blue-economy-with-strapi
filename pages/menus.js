@@ -2,7 +2,7 @@ import Layout from '../components/layout'
 import { getWhyNextReasons } from "../lib/menus";
 
 export default function IndexPage({ reasons }) {
-  console.log(reasons)
+  // console.log(reasons)
   return (
     <Layout>
       <section id="blog">
@@ -31,16 +31,26 @@ export default function IndexPage({ reasons }) {
   );
 }
 
-export async function getStaticProps(context) {
+export async function getServerSideProps(context) {
   const reasons = await getWhyNextReasons();
 
   return {
     props: {
       reasons,
-    },
-    // Next.js will attempt to re-generate the page:
-    // - When a request comes in
-    // - At most once every second
-    revalidate: 1, // In seconds
+    }
   };
 }
+
+// export async function getStaticProps(context) {
+//   const reasons = await getWhyNextReasons();
+
+//   return {
+//     props: {
+//       reasons,
+//     },
+//     // Next.js will attempt to re-generate the page:
+//     // - When a request comes in
+//     // - At most once every second
+//     revalidate: 1, // In seconds
+//   };
+// }
