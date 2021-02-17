@@ -31,7 +31,7 @@ export default function IndexPage({ reasons }) {
   );
 }
 
-export async function getServerSideProps(context) {
+export async function getStaticProps(context) {
   const reasons = await getWhyNextReasons();
 
   return {
