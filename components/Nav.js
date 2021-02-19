@@ -21,6 +21,9 @@ const Nav =() => (
                     <Link href="/menus">
                         <a className="nav-link pl-0">Menus</a>
                     </Link>
+                    <Link href="/docs">
+                        <a className="nav-link pl-0">Docs</a>
+                    </Link>
                     <Link href="/contact_us">
                         <a className="btn primary-button">Contact Us</a>
                     </Link>

@@ -1,39 +1,59 @@
+import Layout from '../components/layout'
 import { google } from "googleapis";
 
-export async function getWhyNextReasons() {
+export default function Index({rows}){
+
+    console.log(rows)
+    return (
+        <Layout>
+          <h5>See the response in console</h5>
+          {
+            <h1>{rows.title}</h1>
+          }
+          {/* {rows.map((element, i) => (
+            <div key ={i}></div>
+
+          ))} */}
+        </Layout>
+    );
+
+}
+
+export async function getServerSideProps() {
 
   const privateKey = "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQC32qjOadQJFrRM\ngGZwJH1FZNfrQ+QgVD1MONfWdcRtoqZtMb17ntGhX2AgLE1SOrR0jzopFdElLnQ4\n9SY3H2ao8MfNPGDxtgz1vOkPRHDERcOZECId+XuhRCoROhjZAKEYox4m0H62gCHO\nJ8P5JQ227pOjEsfDoQIKym8kPpBvGIxpX3sVdLYwmAYhE2gxZCVIMy+oTBvdeYoe\nDAG9Tu3wEYhyMjstkAl9SkIB5ak2gwkHEdVFEqVGNyhkxjCooigoORn9BKguSgi2\n2NIVX+zsF9M90nYN1hDVyK38D0dhSNJA/TJ0Lh/chAxZOikU7UtBJD50df0v/o8w\ni+lK/6bBAgMBAAECggEABrWAdnPPLHu7HZWL52i1d4xMAsZJ81IPoJHscmN+xP9r\n8k0f3Hx5qtlXoSTst2T0A9LcLPaiWKh+zjtH5zgKn3yV1evvn7Jke60mlguJz+e5\n0QKRNCXP+J0LqfBEStrmhgchyQnPreo0EZlK4fMTsoq3MXq0dnOQJwOnFZwA2kTr\npF3o9j6IxDVWSQqYCiSxEyUiI/J2QN/l4Wrcl6RQ5djlw6J+MFYZX95F7viDbTz/\nCdG3AUIrjJcb4MKQZ0XTXqyOe7EFoG/dizPiox69DOLeX0pnMYmw6pOhUN8oCHWH\nVui9A9wXO+b2JGrDb14OhQaMLmSRJrGyhfnN/n0bKQKBgQDwNABBxhTh2WAb2oy9\nYuiuEJt3ZTHJAHdxxLMw9hylqZ8jNI44jp/5NnnOmKXet0OuKD0a+2D/PUhVavG5\n2BkcKaLurGcK+ZxaLa0wYf2IXkXm7HhYBVhmxRp/WHRdof8l9vmwtd5+fgraOcxt\nLT5Q1wUOgVwT3zNOacys7a1MdQKBgQDD8fsnhiDwXFh1Li+hXHQpyXlJyEG/o6tA\n8GqH03aFD0lij6nqqS7uL59/pEpmRnfKwMcLbnIHyxjXzpby5euDgtl78oWaDWS7\nbXQDAThOOLovT7eENvYKzk6aDzBpp5IOuXCl6hTaKFdB7M5b0UIf7N79wGNyd4HZ\nkNB5MExXnQKBgF8luhRTymHMIW3nHGjIjTKmEW8x/o6ISMggCnsSgjZ9AjSH1O5C\nUMv+8DEN9mZKYdzSw6G0ga+ZLtXnDul22Dt3orq4P/jw9yYhgcDwj+U8sqPOd70m\nIOZUnTJkb3PHf7IiKrX81K12cAYRbxCwI0cSZUZhp3+XolMlRZYab9MhAoGAGt3h\nDAhOF+bxkg+lJEDjBJ/Fa6JzsW0lnB/a24jZJWF1NHhyWeSctLf+7KeANAnRfxFz\nuVOJexwT6fM/q0pvQnb8jwwv2XGgsDpPv+G48LDChp4tkYlfrxeem20dvD7nvfEb\nSwSPm2IQpM9tdBV7NZlq8ewhNp7ARS6gBx3iOdkCgYEAwWNmBHgtRxvZ8Bt/lz8o\nvkc7O5AKwoVaNdO1EpXa3wjBw8wt0/X3p94FBUB+gtAzaJ8rsz2FqPDOs+vs7jxg\nkBaD+wC04wcTfS3JVPnpE6EK9UN2c2eGx0aCaJlXJYJMkaCZ+CgOSj2XZbR/jDkY\npUHdLW6fOvnwasFRSJLMB7g=\n-----END PRIVATE KEY-----\n"
   try {
-    const scopes = ["https://www.googleapis.com/auth/spreadsheets.readonly"];
+    const scopes = ["https://www.googleapis.com/auth/documents.readonly"];
     const jwt = new google.auth.JWT(
-      "google-sheet-test@valid-oven-304910.iam.gserviceaccount.com",
-      // process.env.GOOGLE_SHEETS_CLIENT_EMAIL,
+      process.env.GOOGLE_DOCS_CLIENT_EMAIL,
       null,
-
       privateKey.replace(/\\n/g, "\n"),
-      // process.env.GOOGLE_SHEETS_PRIVATE_KEY.replace(/\\n/g, "\n"),
+      // process.env.GOOGLE_DOCS_PRIVATE_KEY.replace(/\\n/g, "\n"),
       scopes
     );
 
-    const sheets = google.sheets({ version: "v4", auth: jwt });
-    const response = await sheets.spreadsheets.values.get({
-      spreadsheetId: "1YeAyHRXYK7xgXZcLwHOde9CQFTRf3s764FD2FUDNkbE",
-      // spreadsheetId: process.env.SPREADSHEET_ID,
-      // range: "Why Next.js?",
-      range: "mymenu?",
+    const docs = google.docs({version: 'v1', auth:jwt });
+
+    const response = await docs.documents.get({
+        documentId: process.env.DOCS_ID,
     });
 
-    const rows = response.data.values
+    const rows = response.data
+    console.log(rows)
+
+    return {
+        props: {
+            rows
+        }
+    };
 
     if (rows.length) {
 
-      return rows
-      
-      return rows.map((row) => ({
-        title: row[0],
-        description: marked(row[1].replace(/\n/g, "<br />"), { renderer }),
-        href: row[2] || null,
-      }));
+        return {
+            props: {
+                rows
+            }
+        };
     }
   } catch (err) {
     console.log(err);
